@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.sventetsky.logging.feign.example.client.jsonplaceholder.configuration.JsonPlaceHolderClientConfiguration;
 import org.sventetsky.logging.feign.example.client.jsonplaceholder.model.Post;
-import org.sventetsky.logging.feign.example.service.JsonPlaceHolderService;
 
 import java.util.List;
 
