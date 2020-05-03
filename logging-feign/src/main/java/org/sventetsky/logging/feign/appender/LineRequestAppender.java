@@ -9,6 +9,7 @@ import static org.sventetsky.logging.feign.RequestContextHolder.setStartTime;
 import static org.sventetsky.logging.feign.RequestContextHolder.setUrl;
 import static java.lang.String.valueOf;
 import static java.time.LocalDateTime.now;
+import static org.sventetsky.logging.feign.appender.Template.REQUEST_LINE_TEMPLATE;
 
 import feign.Request;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -20,12 +21,12 @@ public class LineRequestAppender implements RequestAppender {
     @Override
     public void append(Request request, StringBuilder message) {
         prepareRequestContext(request);
-        message.append("[RQ:")
-               .append(getRequestId())
-               .append("][")
-               .append(getMethod())
-               .append(']')
-               .append(getUrl());
+        String requestLineMessage = getRequestLineMessage();
+        message.append(requestLineMessage);
+    }
+
+    private String getRequestLineMessage() {
+        return String.format(REQUEST_LINE_TEMPLATE, getRequestId(), getMethod(), getUrl());
     }
 
     private void prepareRequestContext(Request request) {
