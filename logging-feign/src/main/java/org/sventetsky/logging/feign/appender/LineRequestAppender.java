@@ -30,7 +30,7 @@ public class LineRequestAppender implements RequestAppender {
 
     private void prepareRequestContext(Request request) {
         setRequestId(valueOf(counter.incrementAndGet()));
-        setMethod(request.method());
+        setMethod(request.httpMethod().name());
         setUrl(request.url());
         setStartTime(now());
     }
