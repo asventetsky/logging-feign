@@ -14,7 +14,7 @@ import feign.Response;
 
 import java.io.IOException;
 
-class OtsFeignLogger extends Logger {
+class PrettyFeignLogger extends Logger {
 
     private LoggingConfig loggingConfig;
 
@@ -26,7 +26,7 @@ class OtsFeignLogger extends Logger {
     private ResponseAppender headersResponseAppender = new HeadersResponseAppender();
     private ResponseAppender payloadResponseAppender = new PayloadResponseAppender();
 
-    OtsFeignLogger(LoggingConfig loggingConfig) {
+    PrettyFeignLogger(LoggingConfig loggingConfig) {
         this.loggingConfig = loggingConfig;
     }
 
@@ -63,14 +63,14 @@ class OtsFeignLogger extends Logger {
         return response;
     }
 
-    @Override
-    protected void log(String configKey, String format, Object... args) {
-        // method should be ignored
-    }
-
     private Response logResponse(Response response, StringBuilder message) throws IOException {
         ResponseWrapper responseWrapper = new ResponseWrapper(response);
         payloadResponseAppender.append(responseWrapper.getResponse(), message);
         return responseWrapper.getResponse();
+    }
+
+    @Override
+    protected void log(String configKey, String format, Object... args) {
+        // ignore default implementation of feign logger
     }
 }

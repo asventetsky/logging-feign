@@ -1,14 +1,2 @@
-feign:
-  client:
-    config:
-      jsonplaceholder:
-        connectTimeout: 8000
-        readTimeout: 8000
-        loggerLevel: full
-      thereportoftheweek:
-        connectTimeout: 5000
-        readTimeout: 5000
-        loggerLevel: headers
-
 logging.level.org.sventetsky.logging.feign.example.client.jsonplaceholder.JsonPlaceHolderClient: DEBUG
 logging.level.org.sventetsky.logging.feign.example.client.thereportoftheweek.TheReportOfTheWeekClient: DEBUG
