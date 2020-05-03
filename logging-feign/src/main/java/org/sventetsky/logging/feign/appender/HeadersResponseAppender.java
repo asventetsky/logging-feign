@@ -3,6 +3,8 @@ package org.sventetsky.logging.feign.appender;
 import feign.Response;
 import java.io.IOException;
 
+import static org.sventetsky.logging.feign.appender.Template.HEADERS_TEMPLATE;
+
 public class HeadersResponseAppender implements ResponseAppender {
 
     @Override
@@ -12,6 +14,6 @@ public class HeadersResponseAppender implements ResponseAppender {
     }
 
     private String getHeadersMessage(Response response) {
-        return String.join(response.headers().toString(), "\n||||HEADERS:", "||||");
+        return String.format(HEADERS_TEMPLATE, response.headers().toString());
     }
 }

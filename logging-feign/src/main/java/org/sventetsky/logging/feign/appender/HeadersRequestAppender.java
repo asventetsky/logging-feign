@@ -2,6 +2,8 @@ package org.sventetsky.logging.feign.appender;
 
 import feign.Request;
 
+import static org.sventetsky.logging.feign.appender.Template.HEADERS_TEMPLATE;
+
 public class HeadersRequestAppender implements RequestAppender {
 
     @Override
@@ -11,6 +13,6 @@ public class HeadersRequestAppender implements RequestAppender {
     }
 
     private String getHeadersMessage(Request request) {
-        return String.join(request.headers().toString(), "\n||||HEADERS:", "||||");
+        return String.format(HEADERS_TEMPLATE, request.headers().toString());
     }
 }

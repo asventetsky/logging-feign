@@ -2,6 +2,9 @@ package org.sventetsky.logging.feign.appender;
 
 import feign.Request;
 
+import static java.lang.String.format;
+import static org.sventetsky.logging.feign.appender.Template.PAYLOAD_TEMPLATE;
+
 public class PayloadRequestAppender implements RequestAppender {
 
     @Override
@@ -15,6 +18,6 @@ public class PayloadRequestAppender implements RequestAppender {
 
     private String getPayloadMessage(Request request) {
         String payload = request.charset() != null ? new String(request.body(), request.charset()) : new String(request.body());
-        return String.join(payload, "\n||||BODY:", "||||");
+        return format(PAYLOAD_TEMPLATE, payload);
     }
 }
